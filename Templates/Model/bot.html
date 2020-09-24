@@ -1,0 +1,51 @@
+{% extends "Layouts/baseBot.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+
+  <!-- banner part start-->
+  <section class="banner_part">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xl-6 col-md-6">
+                <div class="banner_text">
+                    <div class="banner_text_iner text-center">
+                        <h2>BOTFAQ<span></span></h2>
+                        <!-- <h3>FAQ</h3> -->
+                        <!-- <h3> FAQ</h3>  -->
+                         
+                        <a href="{% url 'UserProfil' %}" class="btn_1">Dashbord <i class="ti-angle-right" "></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6" >
+                <div class="banner_bg" style="margin-right: 70px; margin-top:-130px; ">
+
+
+                <iframe style="border-radius:10%; box-shadow:5px 5px 5px 5px #112e41"
+                        allow="microphone;"
+                        width="450"
+                        height="700"
+                        src="https://console.dialogflow.com/api-client/demo/embedded/52590728-bd3d-406e-955e-d5e8cd3f6c39">
+                </iframe>
+                
+
+                    <!-- <img src="{% static 'img/home.JPG' %}"    style="border-radius: 50%;" alt="banner" width="1000px" height="500px"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-app-1 custom-animation"><img src="{% static 'img/animate_icon/icon_1.png' %}" alt=""></div>
+    <div class="hero-app-5 custom-animation2"><img src="{% static 'img/animate_icon/icon_3.png' %}" alt=""></div>
+    <div class="hero-app-7 custom-animation3"><img src="{% static 'img/animate_icon/icon_2.png' %}" alt=""></div>
+    <div class="hero-app-8 custom-animation"><img src="{% static 'img/animate_icon/icon_4.png' %}" alt=""></div>
+</section>
+<!-- banner part start-->
+
+
+{% endblock content %}
+

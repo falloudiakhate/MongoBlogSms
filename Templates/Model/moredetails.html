@@ -1,0 +1,326 @@
+{% extends "Layouts/base.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner text-center">
+                    <div class="breadcrumb_iner_item">
+                        <h2> MORE DETAILS</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<div class="container bootstrap snippet mb-5">
+
+
+<div class="card mt-5"  >
+    <div class="card-body">
+   
+    <div class="row">
+        <!-- <div class="col-sm-10"><h1>{{more.user.first_name}} {{more.user.last_name}}</h1></div> -->
+      <!-- <div class="col-sm-2"><a href="{% url 'Logout' %}" class="pull-right"><img title="Logout" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100" width="50px" height="50px"></a></div> -->
+     </div>
+
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+
+          <div class="text-center">
+                <img src="{{ more.photo.url }}" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%;" width="500px" height="500px" >
+                <!-- <h6>Avatar</h6> -->
+                
+          </div></hr><br>
+
+               
+          
+          
+          
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+          </ul> 
+               
+         
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs row ">
+                <li class="active col-lg-6"><a data-toggle="tab" href="#home">Profil</a></li>
+                <li  class="col-lg-6" ><a data-toggle="tab" href="#messages">
+                    Carrière Pro</a></li>
+                
+              </ul>
+
+              
+            <div class="tab-content">
+
+             <div  class="tab-pane active" id="home">
+               
+               <h2></h2>
+               
+              
+                  
+                
+
+               <hr>
+
+               <aside class="single_sidebar_widget popular_post_widget">
+                
+
+                   <div class="media post_item row">
+
+
+                       <div class="media-body col-lg-6" >
+                           
+                               <h4>Fisrt Name </h4>
+                          
+                       </div>
+
+                       <div class="media-body col-lg-6" >
+                           
+                                <h4 ><b>{{more.user.first_name}}</b> </h4>
+                   
+                        </div>
+
+                   </div>
+
+                   
+                </aside>
+                 
+             
+                <hr>
+
+            
+
+                <aside class="single_sidebar_widget popular_post_widget">
+                 
+ 
+                    <div class="media post_item row">
+ 
+ 
+                        <div class="media-body col-lg-6" >
+                            
+                                <h4>Last Name </h4>
+                                
+                            
+                           
+                        </div>
+
+                        <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{more.user.last_name}}</b> </h4>
+               
+                         </div>
+ 
+                    </div>
+ 
+                    
+                 </aside>
+                  
+              
+                 <hr>
+
+                 
+
+                  <aside class="single_sidebar_widget popular_post_widget">
+                   
+   
+                      <div class="media post_item row">
+   
+   
+                          <div class="media-body col-lg-6" >
+                              
+                                  <h4>Email  </h4>
+                                  
+                              
+                             
+                          </div>
+
+                          <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{more.user.email}} </b></h4>
+               
+                        </div>
+   
+                      </div>
+   
+                      
+                   </aside>
+                    
+                
+                  
+
+                   <hr>
+
+                   <aside class="single_sidebar_widget popular_post_widget">
+                    
+    
+                       <div class="media post_item row">
+    
+    
+                           <div class="media-body col-lg-6" >
+                               
+                                   <h4>Telephone  </h4>
+                                   
+                               
+                              
+                           </div>
+
+                           <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{more.telephone}} </b></h4>
+               
+                        </div>
+    
+                       </div>
+    
+                       
+                    </aside>
+
+                    <hr>
+
+                    
+                     
+    
+
+                
+
+
+
+               
+            </div><!--/tab-pane-->
+            <div class="tab-pane" id="messages">
+        
+                <hr>
+               	
+                <aside class="single_sidebar_widget popular_post_widget">
+                     
+     
+                    <div class="media post_item row">
+ 
+ 
+                        <div class="media-body col-lg-6" >
+                            
+                                <h4>Promotion  </h4>
+                                
+                            
+                           
+                        </div>
+
+                        <div class="media-body col-lg-6" >
+                        
+                         <h4 ><b>{{more.promo}} </b></h4>
+            
+                     </div>
+ 
+                    </div>
+ 
+                    
+                 </aside>
+
+                 <hr>
+
+                 <aside class="single_sidebar_widget popular_post_widget">
+                  
+  
+                     <div class="media post_item row">
+  
+  
+                         <div class="media-body col-lg-6" >
+                             
+                                 <h4>Génie  </h4>
+                                 
+                             
+                            
+                         </div>
+
+                         <div class="media-body col-lg-6" >
+                         
+                          <h4 ><b>{{more.genie}} </b></h4>
+             
+                      </div>
+  
+                     </div>
+  
+                     
+                  </aside>
+
+                  <hr>
+
+                  <aside class="single_sidebar_widget popular_post_widget">
+                   
+   
+                      <div class="media post_item row">
+   
+   
+                          <div class="media-body col-lg-6" >
+                              
+                                  <h4>Entreprise Actuelle  </h4>
+                                  
+                              
+                             
+                          </div>
+
+                          <div class="media-body col-lg-6" >
+                          
+                           <h4 ><b>{{more.entreprise_actuelle}} </b></h4>
+              
+                       </div>
+   
+                      </div>
+   
+                      
+                   </aside>
+
+                   <hr>
+
+                     
+               
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+    </div>
+    </div>
+                                                      
+
+</div>
+    {% endblock content %}

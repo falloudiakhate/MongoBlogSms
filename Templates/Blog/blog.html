@@ -1,0 +1,273 @@
+{% extends "Layouts/base.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <h2>PES Blog</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+    <section class="blog_area container">
+
+    {% for message in messages  %}
+
+    <div class="mt-5"> 
+        <div class="alert {{ message.tags }} alert-dismissible fade show text-center" role="alert" >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+        </div>
+    </div>
+      
+    {% endfor %}
+
+    <div class="row container">
+
+    {% for p in query  %}
+
+
+    <div class="col-lg-4">
+    
+    <article class="blog_item">
+        <div class="blog_item_img">
+            <img class="card-img rounded-0" src="{{p.photo.url}}" alt="" width="200" height="200">
+            <a href="{% url 'PublicationDetails' p.id %}" class="blog_item_date">
+                <h3>{{ p.updated|date:"d" }}</h3>
+                <p>{{ p.updated|date:"M" }}</p>
+            </a>
+        </div>
+
+        <div class="blog_details">
+            <a class="d-inline-block" href="{% url 'PublicationDetails' p.id %}">
+                <h2>{{p.title}}</h2>
+            </a>
+    
+            <ul class="blog-info-link">
+                <li><a href="#"><i class="far fa-user"></i> {{p.author.user.username}}</a></li>
+                <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+            </ul>
+        </div>
+    </article>
+    
+</div>
+    {% endfor %}
+
+
+    
+</div>
+</section>
+
+
+<section class="blog_area container">
+
+
+
+
+    <div class="row container">
+
+    {% for p in posts_list  %}
+
+
+    <div class="col-lg-4">
+    
+    <article class="blog_item">
+        <div class="blog_item_img">
+            <img class="card-img rounded-0" src="{{p.photo.url}}" alt="" width="200" height="200">
+            <a href="{% url 'PublicationDetails' p.id %}" class="blog_item_date">
+                <h3>{{ p.updated|date:"d" }}</h3>
+                <p>{{ p.updated|date:"M" }}</p>
+            </a>
+        </div>
+
+        <div class="blog_details">
+            <a class="d-inline-block" href="{% url 'PublicationDetails' p.id %}">
+                <h2>{{p.title}}</h2>
+            </a>
+    
+            <ul class="blog-info-link">
+                <li><a href="#"><i class="far fa-user"></i> {{p.author.user.username}}</a></li>
+                <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+            </ul>
+        </div>
+    </article>
+    
+</div>
+    {% endfor %}
+
+
+    
+</div>
+</section>
+
+    <!--================Blog Area =================-->
+    <section class="blog_area section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+
+                        {% for p in posts  %}
+                          
+                        
+
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="{{p.photo.url}}" alt="">
+                                <a href="{% url 'PublicationDetails' p.id %}" class="blog_item_date">
+                                    <h3>{{ p.updated|date:"d" }}</h3>
+                                    <p>{{ p.updated|date:"M" }}</p>
+                                </a>
+                            </div>
+
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="{% url 'PublicationDetails' p.id %}">
+                                    <h2>{{p.title}}</h2>
+                                </a>
+                                <p>{{p.content|truncatewords:"50"}}</p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="far fa-user"></i> {{p.author.user.username}}</a></li>
+                                    <li><a href="#"><i class="far fa-heart"></i> {{p.total_likes}} Likes</a></li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        {% endfor %}
+
+                       
+
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                {% if posts.has_previous %}
+                                <li class="page-item">
+                                    <a href="?page={{ posts.previous_page_number }}" class="page-link" aria-label="Previous">
+                                        &laquo;
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% for p in posts.paginator.page_range %}
+                                {% if posts.number == p  %}
+                                <li class="page-item active"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+                                {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if posts.has_next %}
+                                <li class="page-item">
+                                    <a href="?page={{ posts.next_page_number }}" class="page-link" aria-label="Next">
+                                        &raquo;
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <form method="GET">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="q" class="form-control" placeholder='Search Keyword'
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Search Keyword'">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_4"
+                                    type="submit">Search</button>
+                            </form>
+                        </aside>
+
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">Category</h4>
+                            <ul class="list cat-list">
+
+                                <form method="GET" action="">
+
+                                    {% csrf_token %}
+
+                                {% for c in cat  %}
+                                  
+                                
+                                <li>
+                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" name="cat" value="{{c.categorie}}">{{c.categorie}}</button>
+                                </li>
+
+                                {% endfor %}
+
+                            </form>
+                               
+                            </ul>
+                        </aside>
+
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Recent Post</h3>
+                            {% for r in r_posts  %}
+                            <div class="media post_item">
+
+                               
+
+                                <img src="{{r.photo.url}}" alt="post" width="70px" height="70px">
+                                <div class="media-body">
+                                    <a href="{% url 'PublicationDetails' r.id %}">
+                                        <h3>{{r.title}}</h3>
+                                    </a>
+                                    <p>{{ r.updated|date:"d" }} {{ r.updated|date:"M" }} {{ r.updated|date:"Y" }}</p>
+                                </div>
+
+                               
+
+                            </div>
+
+                            {% endfor %}
+                            
+                        </aside>
+                       
+
+
+
+                        <!-- <aside class="single_sidebar_widget newsletter_widget">
+                            <h4 class="widget_title">Newsletter</h4>
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_4"
+                                    type="submit">Subscribe</button>
+                            </form>
+                        </aside> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+
+ 
+
+
+
+{% endblock content %}

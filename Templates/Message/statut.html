@@ -1,0 +1,491 @@
+{% extends "Layouts/base.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Story 🤗</h2>
+                            <p>Home<shellopan></shellopan></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% load static%}
+<!-- breadcrumb start-->
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="/Static/css/style.css">
+    <link rel="stylesheet" href="{% static 'slider/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'slider/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'slider/css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'slider/vendors/owl-carousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'slider/vendors/nice-select/css/nice-select.css' %}" />
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'slider/css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'slider/vendors/owl-carousel/owl.carousel.min.css' %}" />
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--================ Start Popular Courses Area =================-->
+
+    <div class="popular_courses">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div class="main_title">
+              <p>
+
+               <h1 class="mb-4" style="margin-top:20px; color:pink"><b>Our status</b></h1>
+
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+
+          <!-- single course -->
+          <div class="col-lg-12">
+            <div class="owl-carousel active_course">
+                {% for i in statut %}
+              <div class="single_course">
+                <div class="course_head">
+                  <img class="img-fluid" src="{{ i.image_statut.url }}" style="height:190px;" alt="" />
+                </div>
+                <div class="course_content">
+
+                  <span class="tag mb-4 d-inline-block">statut</span>
+                  <h4 class="mb-3">
+
+                    <a href="course-details.html">    {{ i.contenu_statut }}</a>
+                  </h4>
+                  <p>
+                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ea exercitationem in ipsam, ipsum laudantium libero magni modi omnis perferendis porro quos reprehenderit, vitae voluptas voluptatibus? Blanditiis debitis inventore recusandae.
+                  </p>
+                  <div
+                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
+                  >
+                    <div class="authr_meta">
+                            {% for j in auteur %}
+                                {% if j.user.username == i.author_statut_username %}
+                      <img src="{{ j.photo.url }}" style="width:30px; height:40px; border-radius:50%" />
+                            {% endif %}
+                            {% endfor %}
+
+                      <span class="d-inline-block ml-2">{{ i.author_statut_username }}</span>
+                    </div>
+                    <div class="mt-lg-0 mt-3">
+                      <span class="meta_info mr-4">
+                        <a href="#"> <i class="ti-alarm-clock"></i> {{ i.date_statut|date:"G:i" }} </a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                    {% endfor %}
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+ <script src="{% static 'slider/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'slider/js/popper.js' %}"></script>
+    <script src="{% static 'slider/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'slider/vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'slider/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'slider/js/owl-carousel-thumb.min.js' %}"></script>
+    <script src="{% static 'slider/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'slider/js/mail-script.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="{% static 'slider/js/gmaps.min.js' %}"></script>
+   <script>
+        (function($) {
+  "use strict";
+
+  var nav_offset_top = $("header").height() + 50;
+  /*-------------------------------------------------------------------------------
+	  Navbar
+	-------------------------------------------------------------------------------*/
+
+  //* Navbar Fixed
+  function navbarFixed() {
+    if ($(".header_area").length) {
+      $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll >= nav_offset_top) {
+          $(".header_area").addClass("navbar_fixed");
+        } else {
+          $(".header_area").removeClass("navbar_fixed");
+        }
+      });
+    }
+  }
+  navbarFixed();
+
+  // Search Toggle
+  $("#search_input_box").hide();
+  $("#search").on("click", function() {
+    $("#search_input_box").slideToggle("slow");
+    $("#search_input").focus();
+  });
+  $("#close_search").on("click", function() {
+    $("#search_input_box").slideUp("slow");
+  });
+
+  /*----------------------------------------------------*/
+  /*  Course Slider
+    /*----------------------------------------------------*/
+  function active_course() {
+    if ($(".active_course").length) {
+      $(".active_course").owlCarousel({
+        loop: true,
+        margin: 20,
+        items: 3,
+        nav: true,
+        autoplay: 2500,
+        smartSpeed: 1500,
+        dots: false,
+        responsiveClass: true,
+        thumbs: true,
+        thumbsPrerendered: true,
+        navText: ["<img src='{% static 'slider/img/prev.png' %}'>", "<img src='{% static 'slider/img/next.png' %}'>"],
+        responsive: {
+          0: {
+            items: 1,
+            margin: 0
+          },
+          991: {
+            items: 2,
+            margin: 30
+          },
+          1200: {
+            items: 3,
+            margin: 30
+          }
+        }
+      });
+    }
+  }
+  active_course();
+
+  /*----------------------------------------------------*/
+  /*  Event Slider
+    /*----------------------------------------------------*/
+  function active_event() {
+    if ($(".active_event").length) {
+      $(".active_event").owlCarousel({
+        loop: true,
+        margin: 30,
+        items: 2,
+        nav: false,
+        autoplay: 2500,
+        smartSpeed: 1500,
+        dots: false,
+        responsiveClass: true,
+        thumbs: true,
+        thumbsPrerendered: true
+      });
+    }
+  }
+  active_event();
+
+  /*----------------------------------------------------*/
+  /*  Testimonials Slider
+    /*----------------------------------------------------*/
+  function testimonials_slider() {
+    if ($(".testi_slider").length) {
+      $(".testi_slider").owlCarousel({
+        loop: true,
+        margin: 30,
+        items: 2,
+        autoplay: 2500,
+        smartSpeed: 2500,
+        dots: true,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          991: {
+            items: 2
+          }
+        }
+      });
+    }
+  }
+  testimonials_slider();
+
+  /*----------------------------------------------------*/
+  /*  MailChimp Slider
+    /*----------------------------------------------------*/
+  function mailChimp() {
+    $("#mc_embed_signup")
+      .find("form")
+      .ajaxChimp();
+  }
+  mailChimp();
+
+  $("select").niceSelect();
+
+  /*----------------------------------------------------*/
+  /*  Google map js
+    /*----------------------------------------------------*/
+
+  if ($("#mapBox").length) {
+    var $lat = $("#mapBox").data("lat");
+    var $lon = $("#mapBox").data("lon");
+    var $zoom = $("#mapBox").data("zoom");
+    var $marker = $("#mapBox").data("marker");
+    var $info = $("#mapBox").data("info");
+    var $markerLat = $("#mapBox").data("mlat");
+    var $markerLon = $("#mapBox").data("mlon");
+    var map = new GMaps({
+      el: "#mapBox",
+      lat: $lat,
+      lng: $lon,
+      scrollwheel: false,
+      scaleControl: true,
+      streetViewControl: false,
+      panControl: true,
+      disableDoubleClickZoom: true,
+      mapTypeControl: false,
+      zoom: $zoom,
+      styles: [
+        {
+          featureType: "water",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#dcdfe6"
+            }
+          ]
+        },
+        {
+          featureType: "transit",
+          stylers: [
+            {
+              color: "#808080"
+            },
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry.stroke",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#dcdfe6"
+            }
+          ]
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#ffffff"
+            }
+          ]
+        },
+        {
+          featureType: "road.local",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#ffffff"
+            },
+            {
+              weight: 1.8
+            }
+          ]
+        },
+        {
+          featureType: "road.local",
+          elementType: "geometry.stroke",
+          stylers: [
+            {
+              color: "#d7d7d7"
+            }
+          ]
+        },
+        {
+          featureType: "poi",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#ebebeb"
+            }
+          ]
+        },
+        {
+          featureType: "administrative",
+          elementType: "geometry",
+          stylers: [
+            {
+              color: "#a7a7a7"
+            }
+          ]
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#ffffff"
+            }
+          ]
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#ffffff"
+            }
+          ]
+        },
+        {
+          featureType: "landscape",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#efefef"
+            }
+          ]
+        },
+        {
+          featureType: "road",
+          elementType: "labels.text.fill",
+          stylers: [
+            {
+              color: "#696969"
+            }
+          ]
+        },
+        {
+          featureType: "administrative",
+          elementType: "labels.text.fill",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#737373"
+            }
+          ]
+        },
+        {
+          featureType: "poi",
+          elementType: "labels.icon",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "geometry.stroke",
+          stylers: [
+            {
+              color: "#d6d6d6"
+            }
+          ]
+        },
+        {
+          featureType: "road",
+          elementType: "labels.icon",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {},
+        {
+          featureType: "poi",
+          elementType: "geometry.fill",
+          stylers: [
+            {
+              color: "#dadada"
+            }
+          ]
+        }
+      ]
+    });
+  }
+})(jQuery);
+
+   </script>
+
+ <form action="{% url 'statut' %}" method="post" enctype="multipart/form-data" class="form-group col-lg-12" style="display:flex;">
+         <div class="col-lg-4"> </div>
+         {% csrf_token %}
+    <div class="form-group col-lg-4">
+        <div class="input-group mb-3">
+            <input type="text" name="contenu_statut" class="form-control" placeholder='contenu story'
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'story'">
+        </div>
+               <input type="hidden"  name="date_statut" value= '{{ a|date:"Y-m-d h:i:s"  }}'>
+              <input type="hidden"  name="author_statut_username" value= '{{ z }}'>
+        <div class="input-group mb-3">
+                <label for="file" class="label-file" style="margin-right: 10px;">Choisir une image  </label>
+                <input id="file" accept="image/*" name="image_statut"  class="input-file" type="file" style="display:none;">
+                <label for="save" class="label-file"> <i class="fa fa-paper-plane" aria-hidden="true"></i> </label>
+                <input id="save" type="submit" style="display:none;">
+        </div>
+    </div>
+         <div class="col-lg-4"> </div>
+</form>
+
+{% endblock content %}

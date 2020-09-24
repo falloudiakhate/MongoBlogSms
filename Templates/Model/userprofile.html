@@ -1,0 +1,686 @@
+{% extends "Layouts/base.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner text-center">
+                    <div class="breadcrumb_iner_item">
+                        <h2>USER'S DASHBORD 🚀</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<div class="container bootstrap snippet mb-5">
+
+    <div class="card mt-5" >
+        <div class="card-body">
+
+    
+   
+    <div class="row">
+        <!-- <div class="col-sm-10"><h4>{{con_user.user.first_name}} {{con_user.user.last_name}}</h4></div> -->
+      <!-- <div class="col-sm-2"><a href="{% url 'Logout' %}" class="pull-right"><img title="Logout" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100" width="50px" height="50px"></a></div> -->
+     </div>
+
+    
+
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+
+          <div class="text-center">
+                <img src="{{ con_user.photo.url }}" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%;" width="500px" height="500px">
+                <!-- <h6>Avatar</h6> -->
+                
+          </div><br>
+
+               
+          
+          
+          
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Sms Envoyés</strong></span>{{ a }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Sms Recus</strong></span>{{ b }}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>My Post</strong></span>{{ my_post | length}}</li>
+          </ul> 
+               
+         
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+
+            <div class="card mt-5"  >
+                <div class="card-body">
+
+            <ul class="nav nav-tabs row " >
+                <li class="active col-lg-3"><a data-toggle="tab" href="#home">Friends</a></li>
+                <li  class="col-lg-3" ><a data-toggle="tab" href="#messages">Self Informations</a></li>
+                <li  class="col-lg-3" ><a data-toggle="tab" href="#settings">Update Profile</a></li>
+                <li class="active col-lg-3"><a data-toggle="tab"  href="#notifs">Notifications</a></li>
+              </ul>
+
+            </div>
+            </div>
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+
+                {% for i in friend  %}
+                  
+                
+
+                <div class="card mt-5" >
+                    <div class="card-body">
+
+                <aside class="single_sidebar_widget popular_post_widget">
+                 
+
+                    <div class="media post_item row">
+
+                        <img src="{{ i.photo.url }}" alt="post" class="col-lg-2"  class="img-circle img-thumbnail" style="border-radius: 50%;" width="100px" height="100px">
+
+                        <div class="media-body col-lg-6" >
+                            
+                                <h4>Name : {{i.user.first_name}} {{i.user.last_name}}</h4>
+                                <h4>Email : {{i.user.email}}</h4>
+                                <h4>Telephone : {{i.telephone}}</h4>
+                            
+                           
+                        </div>
+
+                        <div class="col-lg-2">
+
+                           <a href="{% url 'sms' id=i.id %}"> <button style="margin-top: 10px;"  class="button button-contactForm">Send Message</button></a>
+
+                        </div>
+
+
+                        <div class="col-lg-2">
+
+                            <a href="{% url 'MoreDetails' i.id %}"> <button style="margin-top: 10px;"  class="button button-contactForm">More Details</button></a>
+ 
+                         </div>
+                    </div>
+
+                    
+                </aside>
+                  
+              
+                </div>
+                </div>
+
+                {% endfor %}
+
+
+				<nav aria-label="Page navigation example " style="margin-left: 180px;">
+						{% if friend.has_other_pages %}
+					
+						  <ul class="pagination justify-content-center">
+					
+							{% if friend.has_previous %}
+					
+							<li class="page-item">
+							  <a class="page-link active" href="?page={{ friend.previous_page_number }}">Previous</a>
+							</li>
+					
+							{% else %}
+					
+							<li class="disabled"><span>Previous</span></li>
+					
+							{% endif %}
+					
+							{% for i in friend.paginator.page_range %}
+					
+							{% if friend.number == i %}
+					
+							<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+					
+							{% else %}
+					
+							<li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+					
+							{% endif %}
+					
+							{% endfor %}
+					
+							{% if friend.has_next %}
+					
+							<li class="page-item">
+							  <a class="page-link" href="?page={{ friend.next_page_number }}">Next</a>
+							</li>
+					
+							{% else %}
+					
+							<li class="disabled"><span>Next</span></li>
+					
+							{% endif %}
+						  </ul>
+					
+						  {% endif %}
+					
+                </nav> 
+                
+              
+             </div><!--/tab-pane-->
+             <div class="tab-pane" id="messages">
+               
+               <h2></h2>
+               
+              
+                  
+                
+               <div class="card mt-5" >
+                <div class="card-body">
+
+               <aside class="single_sidebar_widget popular_post_widget">
+                
+
+                   <div class="media post_item row">
+
+
+                       <div class="media-body col-lg-6" >
+                           
+                               <h4>Fisrt Name </h4>
+                          
+                       </div>
+
+                       <div class="media-body col-lg-6" >
+                           
+                                <h4 ><b>{{con_user.user.first_name}}</b> </h4>
+                   
+                        </div>
+
+                   </div>
+
+                   
+                </aside>
+                 
+             
+               
+            
+
+                <aside class="single_sidebar_widget popular_post_widget">
+                 
+ 
+                    <div class="media post_item row">
+ 
+ 
+                        <div class="media-body col-lg-6" >
+                            
+                                <h4>Last Name </h4>
+                                
+                            
+                           
+                        </div>
+
+                        <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{con_user.user.last_name}}</b> </h4>
+               
+                         </div>
+ 
+                    </div>
+ 
+                    
+                 </aside>
+                  
+              
+                 
+
+                 
+
+                 <aside class="single_sidebar_widget popular_post_widget">
+                  
+  
+                     <div class="media post_item row">
+  
+  
+                         <div class="media-body col-lg-6" >
+                             
+                                 <h4>Username </h4>
+                                 
+                             
+                            
+                         </div>
+
+                         <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{con_user.user.username}}</b> </h4>
+               
+                        </div>
+  
+                     </div>
+  
+                     
+                  </aside>
+                   
+               
+                 
+
+                 
+
+                  <aside class="single_sidebar_widget popular_post_widget">
+                   
+   
+                      <div class="media post_item row">
+   
+   
+                          <div class="media-body col-lg-6" >
+                              
+                                  <h4>Email  </h4>
+                                  
+                              
+                             
+                          </div>
+
+                          <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{con_user.user.email}} </b></h4>
+               
+                        </div>
+   
+                      </div>
+   
+                      
+                   </aside>
+                    
+                
+                  
+
+                  
+
+                   <aside class="single_sidebar_widget popular_post_widget">
+                    
+    
+                       <div class="media post_item row">
+    
+    
+                           <div class="media-body col-lg-6" >
+                               
+                                   <h4>Telephone  </h4>
+                                   
+                               
+                              
+                           </div>
+
+                           <div class="media-body col-lg-6" >
+                           
+                            <h4 ><b>{{con_user.telephone}} </b></h4>
+               
+                        </div>
+    
+                       </div>
+    
+                       
+                    </aside>
+
+                    
+
+                    <aside class="single_sidebar_widget popular_post_widget">
+                     
+     
+                        <div class="media post_item row">
+     
+     
+                            <div class="media-body col-lg-6" >
+                                
+                                    <h4>Promotion  </h4>
+                                    
+                                
+                               
+                            </div>
+ 
+                            <div class="media-body col-lg-6" >
+                            
+                             <h4 ><b>{{con_user.promo}} </b></h4>
+                
+                         </div>
+     
+                        </div>
+     
+                        
+                     </aside>
+
+                
+
+                     <aside class="single_sidebar_widget popular_post_widget">
+                      
+      
+                         <div class="media post_item row">
+      
+      
+                             <div class="media-body col-lg-6" >
+                                 
+                                     <h4>Génie  </h4>
+                                     
+                                 
+                                
+                             </div>
+  
+                             <div class="media-body col-lg-6" >
+                             
+                              <h4 ><b>{{con_user.genie}} </b></h4>
+                 
+                          </div>
+      
+                         </div>
+      
+                         
+                      </aside>
+
+                     
+
+                      <aside class="single_sidebar_widget popular_post_widget">
+                       
+       
+                          <div class="media post_item row">
+       
+       
+                              <div class="media-body col-lg-6" >
+                                  
+                                      <h4>Entreprise Actuelle  </h4>
+                                      
+                                  
+                                 
+                              </div>
+   
+                              <div class="media-body col-lg-6" >
+                              
+                               <h4 ><b>{{con_user.entreprise_actuelle}} </b></h4>
+                  
+                           </div>
+       
+                          </div>
+       
+                          
+                       </aside>
+                     
+                 
+                    </div>
+                    </div>
+
+                
+
+
+
+               
+             </div><!--/tab-pane-->
+
+                        <div class="tab-pane" id="notifs">
+
+
+                                <ul class="list-group"  style="margin-top:20px; height: 400px; overflow: auto;" >
+                                  <li class="list-group-item active">Sms recus durant les derniéres 24h</li>
+                                {% for i in notification %}
+                                        {% for j in friend %}
+                                                {% if  j.user.username ==  i.author_sms_username %}
+                                                <li class="list-group-item"><img src="{{ j.photo.url }}" width="50px" height="50px" style="border-radius: 50%;"> <a style="text-decoration:none;" href="{% url 'sms' id=j.id %}"> {{ i.author_sms_username }}</a><b></b>  vous a envoyé un message <span class="badge">{{ i.date_sms }}</span></li>
+                                                {% endif %}
+                                        {% endfor %}
+                                {% endfor %}
+                                </ul>
+
+                  </div>
+
+
+             <div class="tab-pane" id="settings">
+            		
+               	
+                  <hr>
+                  <form class="form" action="{% url 'UpdateProfile' %}" method="POST" id="registrationForm">
+                      <div class="form-group">
+
+                        {% csrf_token %}
+                          
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>First name</h4></label>
+                              <input type="text" class="form-control" name="first_name" value={{request.user.first_name}} id="first_name"  >
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Last name</h4></label>
+                              <input type="text" class="form-control" name="last_name" value={{request.user.last_name}} id="last_name">
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Telephone</h4></label>
+                              <input type="text" class="form-control" name="telephone" id="telephone" value={{request.user.author.telephone}}  >
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="phone"><h4>Photo</h4></label>
+                            Currently : {{request.user.author.photo.url}}
+                            <input type="file" class="form-control" name="photo" id="photo" value={{request.user.author.photo}}  >
+
+                        </div>
+                    </div>
+          
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="mobile"><h4>Username</h4></label>
+                              <input type="text" class="form-control" name="username" id="username" value={{request.user.username}}  >
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Email</h4></label>
+                              <input type="email" class="form-control" name="email" id="email" value={{request.user.email}}  >
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                            <label for="email"><h4>Password</h4></label>
+                            <input type="password" class="form-control" name="password" id="password" value={{request.user.password}}  >
+                        </div>
+                    </div>
+
+                      
+                      
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                               	<!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
+                            </div>
+                      </div>
+              	</form>
+              </div>
+               
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+    </div>
+    </div>
+
+
+    <div class="container bootstrap snippet mb-5">
+
+        <div class="card mt-5" >
+            <div class="card-body">
+    
+        
+       
+        <div class="row">
+            <!-- <div class="col-sm-10"><h4>{{con_user.user.first_name}} {{con_user.user.last_name}}</h4></div> -->
+          <!-- <div class="col-sm-2"><a href="{% url 'Logout' %}" class="pull-right"><img title="Logout" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100" width="50px" height="50px"></a></div> -->
+         </div>
+    
+        
+    
+        <div class="row">
+              <div class="col-sm-3"><!--left col-->
+                  
+    
+              <div class="text-center">
+                    <!-- <img src="{{ con_user.photo.url }}" class="avatar img-circle img-thumbnail" alt="avatar" style="border-radius: 50%;" width="500px" height="500px"> -->
+                    <!-- <h6>Avatar</h6> -->
+                    
+              </div><br>
+    
+                   
+              
+              
+              
+       
+                   
+             
+              
+            </div><!--/col-3-->
+            <div class="col-sm-12">
+    
+                <div class="card mt-5"  >
+                    <div class="card-body">
+                        <h1 class="text-center">Mes Publications</h1>
+    
+                </div>
+                </div>
+    
+                  
+              <div class="tab-content">
+                <div class="tab-pane active" id="home">
+    
+                
+                        <div class="row">
+                          
+                            {% for r  in my_post  %}
+                              
+                           
+            
+                            <div class="col-sm-6 col-lg-4 col-xl-4 mt-5 mb-5">
+                                <div class="single-home-blog">
+                                    <div class="card">
+                                        <img src="{{r.photo.url}}" class="card-img-top" alt="blog">
+                                        <div class="card-body">
+                                            <a href="">{{r.categorie}}</a> | <span> {{ r.updated|date:"d" }} {{ r.updated|date:"M" }} {{ r.updated|date:"Y" }}</span>
+                                            <a href="{% url 'PublicationDetails' r.id %}">
+                                                <h5 class="card-title">{{r.title}}</h5>
+                                            </a>
+                                            <ul>
+                                                <li> <i class="far fa-heart"></i>{{r.total_likes}} Likes</li>
+                                                <!-- <li> <i class="ti-eye"></i>10 View</li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+            
+                            {% endfor %}
+                     
+                        
+                        </div>
+                   
+    
+    
+                    <nav aria-label="Page navigation example " style="margin-left: 180px;">
+                            {% if friend.has_other_pages %}
+                        
+                              <ul class="pagination justify-content-center">
+                        
+                                {% if friend.has_previous %}
+                        
+                                <li class="page-item">
+                                  <a class="page-link active" href="?page={{ friend.previous_page_number }}">Previous</a>
+                                </li>
+                        
+                                {% else %}
+                        
+                                <li class="disabled"><span>Previous</span></li>
+                        
+                                {% endif %}
+                        
+                                {% for i in friend.paginator.page_range %}
+                        
+                                {% if friend.number == i %}
+                        
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        
+                                {% else %}
+                        
+                                <li class="page-item" ><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        
+                                {% endif %}
+                        
+                                {% endfor %}
+                        
+                                {% if friend.has_next %}
+                        
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ friend.next_page_number }}">Next</a>
+                                </li>
+                        
+                                {% else %}
+                        
+                                <li class="disabled"><span>Next</span></li>
+                        
+                                {% endif %}
+                              </ul>
+                        
+                              {% endif %}
+                        
+                    </nav> 
+                    
+                  
+              </div><!--/tab-content-->
+    
+            </div><!--/col-9-->
+        </div><!--/row-->
+        </div>
+        </div>
+        </div>
+        </div>
+        
+                                                      
+
+
+    {% endblock content %}

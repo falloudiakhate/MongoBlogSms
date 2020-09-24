@@ -1,0 +1,176 @@
+{% extends "Layouts/base.html" %}
+
+
+
+{% block content %}
+
+{% load static %}
+
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Messagerie 📨</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+
+<link href="{% static 'css/sms.css' %}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"
+
+<body>
+<form action="{% url 'sms' id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+<div class="container haut" style="display:flex; margin:auto;" class="ak">
+   <input type="hidden"  name="date_sms" value= '{{ a|date:"Y-m-d h:i:s"  }}'>
+  <input type="hidden"  name="author_sms_username" value= '{{ z }}'>
+  <input type="hidden"  name="recepteur_sms_username" value= '{{ username_recepteur }}'>
+
+
+<div class="row" style="margin-left:20px; margin-top:40px;">
+<div class="messaging col-lg-5" style="border-radius: 15px;" >
+      <div class="inbox">
+        <div class="inbox_people" style="width:460px;">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>Envoyés</h4>
+            </div>
+            <div class="srch_bar" hidden="True">
+              <div class="stylish-input-group">
+                <input type="text" class="search-bar"  placeholder="Search" >
+                <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            {% for i in sms_send %}
+            <div class="chat_list">
+              <div class="chat_people">
+                <div class="chat_img"> <img src="{{ user_connecte.photo.url }}" width="50px" height="50px" style="border-radius:50%;"> </div>
+                <div class="chat_ib">
+                  <h5>{{ z }} <span class="chat_date">{{ i.date_sms }}</span></h5>
+                   <p style="word-wrap: break-word;">
+                  {{ i.contenu_sms }} {% if i.image_sms %}<a href="{{ i.image_sms.url }}" target="_blank">img</a>{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        <div class="panel-footer">
+            <div class="input-group">
+                     <input type="file" accept="image/*" class="btn btn-primary btn-sm" name="image_sms" style="width:5px;padding-left:0px; height:35px;">
+                <input  name="contenu_sms" id="sms" class="form-control input-sm" placeholder="Type your message here..." style="height:35px;"/>
+                    <span class="input-group-btn" style="width:50px;" >
+                        <button type="submit" value="submit" class="btn btn-success btn-sm" style="margin-left:0;height:35px;">Send</button>
+                    </span>
+            </div>
+        </div>
+
+
+
+                <div class="row" style="margin: 8px 2px 1px 4px;">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+
+
+                      <li style="list-style-type:none; position:absolute; right:5px;"><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                        <h3>
+                          <small>
+                              <table>
+                              <tr>
+
+
+                                        <td> 🤝 </td>  <td> 🏖 </td>
+                                        <td>💼   </td> <td>💰   </td>
+                                       <td> 🤣 </td> <td> 📆 </td>
+                                      <td>🏃   </td> <td>👪   </td>
+                                      <td>🍗   </td> <td> 🚗 </td>
+                                      <td> 🏆 </td> <td>⚽  </td>
+                                      <td> 🎉 </td>  <td> 🤲 </td>
+                                     <td> 💻  </td> <td> 🏡 </td>
+
+                              </tr>
+                              </table>
+                          </small>
+                        </h3>
+                    <ul class="nav navbar-right panel_toolbox">
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+
+
+
+        </div>
+      </div>
+
+
+    </div>
+        <div style="margin-left:80px; margin-right:50px;"></div>
+
+<div class="messaging col-lg-5">
+      <div class="inbox">
+        <div class="inbox_people" style="width:460px">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>reçus</h4>
+            </div>
+            <div class="srch_bar" hidden="True">
+              <div class="stylish-input-group">
+                <input type="text" class="search-bar"  placeholder="Search" >
+                <span class="input-group-addon">
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                </span> </div>
+            </div>
+          </div>
+          <div class="inbox_chat">
+             {% for i in sms_recu %}
+            <div class="chat_list active_chat">
+              <div class="chat_people">
+                <div class="chat_img"> <img src="{{ recepteur.photo.url }}"  width="50px" height="50px" style="border-radius:50%;"></div>
+                <div class="chat_ib">
+                  <h5>{{ i.author_sms_username }}<span class="chat_date">{{ i.date_sms }}</span></h5>
+                  <p style="word-wrap: break-word;">
+                  {{ i.contenu_sms }} {% if i.image_sms %}<a href="{{ i.image_sms.url }}" target="_blank">img</a>{% endif %}
+               </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+</div>
+
+</div>
+</form>
+
+</body>
+{% endblock content %}
